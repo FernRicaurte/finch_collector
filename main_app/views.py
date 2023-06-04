@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Finch
 
 # Define the home view
 def home(request):
@@ -10,13 +11,12 @@ def about(request):
   # Include an .html file extension 
   return render(request, 'about.html')
 
-# Define the all_finches view
-def all_finches(request):
-  # Include an .html file extension
-  return render(request, 'all_finches/index.html')
+# Define the finches_index view
+def finches_index(request):
+    finches = Finch.objects.all()
+    return render(request, 'finches/index.html', {'finches': finches})
 
-# Add this finches list below the imports
-finches = [
-  {'name': 'Jose', 'breed': 'House finch', 'description': 'red feathers', 'age': 1},
-  {'name': 'Carlos', 'breed': 'Purple finch', 'description': '[purple feathers]', 'age': 2},
-]
+def finches_detail(request, finch_id):
+  finch = Finch.objects.get(id=finch_id)
+  return render(request, 'finches/detail.html', { 'finch': finch })
+
