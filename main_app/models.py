@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import  reverse
+from django.urls import reverse
 
 class Toy(models.Model):
     name = models.CharField(max_length=50)
@@ -23,7 +23,7 @@ class Finch(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return  reverse('detail', kwargs={'finch_id': self.id})
+        return reverse('detail', kwargs={'finch_id': self.id})
     
 
 class Feeding(models.Model):
